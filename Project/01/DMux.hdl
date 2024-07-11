@@ -15,4 +15,10 @@ CHIP DMux {
     Or(a= in, b= sel, out= w1);
     And(a= in, b= sel, out= b);
     Xor(a = w1, b = sel, out = a);
+    //better solution
+    /**
+    Not(in=sel,out=notsel);
+    And(a=notsel,b=in,out=a);
+    And(a=sel,b=in,out=b);
+    **/
 }

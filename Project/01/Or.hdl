@@ -13,5 +13,7 @@ CHIP Or {
     PARTS:
     Not(in= a, out= w1);
     Not(in= b, out= w2);
+    //Nand only 1，1 -> 0; or only 0，0 -> 0; 
+    //Here it's the equivalent of taking the opposite, exactly the opposite.
     Nand(a= w1, b= w2, out= out);
 }
