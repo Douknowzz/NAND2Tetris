@@ -1,0 +1,30 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/2/FullAdder.hdl
+/**
+ * Computes the sum of three bits.
+ */
+CHIP FullAdder {
+    IN a, b, c;  // 1-bit inputs
+    OUT sum,     // Right bit of a + b + c
+        carry;   // Left bit of a + b + c
+
+    PARTS:
+    //以下是第一次想到的丑陋做法。。。
+    //And(a= a, b= b, out= w1);
+    //And(a= a, b= c, out= w2);
+    //And(a= c, b= b, out= w3);
+    //Or(a= w1, b= w2, out= ww1);
+    //Or(a= w3, b= ww1, out= carry);
+
+    //HalfAdder(a= a, b= b, sum= k1, carry= k2);
+    //HalfAdder(a= k1, b= c, sum= sum, carry= k4);
+
+    //将a,b半价余加的余位再和c进行半加就是结果的sum
+    //将产生的两个进位or，只要有一个是1就说明结果进位1
+    HalfAdder(a= a, b= b, sum= w1, carry= w2);
+    HalfAdder(a= w1, b= c, sum= sum, carry= w3);
+    Or(a= w2, b= w3, out= carry);
+    
+}
